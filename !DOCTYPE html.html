@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Maro | Un Mundo de Herramientas & Servicios</title>
+  
+  <style>
+    /* --- RESET & PALETA DE COLORES --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --azul-maro: #0b3c86;
+      --azul-oscuro: #061f47;
+      --amarillo-maro: #f59e0b;
+      --gris-fondo: #f8fafc;
+      --texto: #1e293b;
+    }
+
+    body {
+      background-color: var(--gris-fondo);
+      color: var(--texto);
+    }
+
+    /* --- NAVEGACIÓN Y ENCABEZADO --- */
+    header {
+      background-color: var(--azul-maro);
+      color: white;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ACCIONES RÁPIDAS EN EL HEADER (INSTAGRAM & MENÚ) */
+    .header-actions {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      z-index: 101;
+    }
+
+    /* BOTÓN VISIBLE DE INSTAGRAM */
+    .btn-instagram-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-instagram-header:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(220, 39, 67, 0.4);
+    }
+
+    .brand-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+
+    /* LOGO OFICIAL DE FERRETERÍA MARO */
+    .logo-img {
+      height: 350px;
+      width: auto;
+      max-width: 95vw;
+      display: block;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.01);
+    }
+
+    .brand-text {
+      text-align: center;
+    }
+
+    .slogan-sub {
+      font-size: 1.1rem;
+      color: #e2e8f0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* MENÚ HAMBURGUESA */
+    .menu-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 32px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      width: 100%;
+      height: 4px;
+      background-color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .menu-btn.open span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+      background-color: var(--amarillo-maro);
+    }
+    .menu-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-btn.open span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+      background-color: var(--amarillo-maro);
+    }
+
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--azul-oscuro);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      z-index: 99;
+    }
+
+    nav.open {
+      max-height: 350px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      padding: 1.2rem 2rem;
+      text-align: center;
+    }
+
+    nav li {
+      margin: 0.8rem 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--amarillo-maro);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      background: linear-gradient(rgba(11, 60, 134, 0.85), rgba(6, 31, 71, 0.9)), 
+                  url('https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      color: #e2e8f0;
+    }
+
+    .btn-whatsapp-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #25d366;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-whatsapp-hero:hover {
+      transform: scale(1.04);
+      background-color: #1eb954;
+    }
+
+    /* --- DESTACADO: SERVICIO ESPECIALIZADO --- */
+    .servicio-destacado {
+      background: white;
+      max-width: 900px;
+      margin: -2rem auto 2rem auto;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      border-left: 6px solid var(--azul-maro);
+    }
+
+    .servicio-destacado h3 {
+      color: var(--azul-maro);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- CATEGORÍAS & MARCAS --- */
+    .seccion {
+      padding: 2.5rem 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .seccion h2 {
+      text-align: center;
+      color: var(--azul-maro);
+      margin-bottom: 1.8rem;
+    }
+
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 4px solid var(--amarillo-maro);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--azul-maro);
+    }
+
+    /* --- MARCAS CON HOVER INTERACTIVO Y LOGOS REALES --- */
+    .marcas-bar {
+      background: #e2e8f0;
+      padding: 1.2rem;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      font-weight: bold;
+      color: #475569;
+      margin-top: 1rem;
+    }
+
+    .marca-item {
+      position: relative;
+      background: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .marca-item:hover {
+      background: var(--azul-maro);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* TARJETA FLOTANTE DE LOGOS */
+    .marca-popover {
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      background: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      z-index: 120;
+      width: 150px;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbd5e1;
+    }
+
+    .marca-popover::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+
+    .marca-popover img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .marca-item:hover .marca-popover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* --- UBICACIÓN Y CONTACTO --- */
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .info-list li {
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .mapa-frame {
+      width: 100%;
+      height: 260px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .btn-copiar {
+      background-color: var(--azul-maro);
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .btn-copiar:hover {
+      background-color: var(--azul-oscuro);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--azul-oscuro);
+      color: #94a3b8;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .logo-img {
+        height: 180px;
+      }
+      .btn-instagram-header span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="header-actions">
+      <a href="https://www.instagram.com/ferreteriamarocali" target="_blank" class="btn-instagram-header">
+        📸 <span>Instagram</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="brand-container">
+      <a href="#inicio">
+        <img src="logo-maro.png" alt="Logo Ferretería Maro" class="logo-img">
+      </a>
+      <div class="brand-text">
+        <span class="slogan-sub">Un mundo de herramientas & servicios</span>
+      </div>
+    </div>
+
+    <nav id="navMenu">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios & Productos</a></li>
+        <li><a href="#marcas">Marcas Aliadas</a></li>
+        <li><a href="#ubicacion">Ubicación & Horarios</a></li>
+        <li><a href="https://www.instagram.com/ferreteriamarocali" target="_blank">Instagram oficial (@ferreteriamarocali)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="inicio">
+    <h1>Ferretería Maro Cali</h1>
+    <p>Tuberías, Niples, Válvulas y Herramientas Eléctricas o Manuales en Barrio San Nicolás.</p>
+    <a href="https://wa.me/573126718491" target="_blank" class="btn-whatsapp-hero">
+      Pedir por WhatsApp 📲 (312 6718491)
+    </a>
+  </section>
+
+  <!-- SERVICIO ESPECIALIZADO -->
+  <div class="servicio-destacado" id="servicios">
+    <h3>⚙️ Servicio Técnico Especializado</h3>
+    <p><strong>Roscamos Tubería de 1/8" a 4"</strong> (Acero al Carbón, Galvanizado, Acero Inoxidable y más).</p>
+  </div>
+
+  <!-- PRODUCTOS / CATÁLOGO -->
+  <section class="seccion">
+    <h2>Catálogo Principal</h2>
+    <div class="grid-productos">
+      <div class="card">
+        <h3>🔩 Tubería y Conexiones</h3>
+        <p>Niples, accesorios galvanizados, acero al carbón y acero inoxidable para agua, gas o vapor.</p>
+      </div>
+      <div class="card">
+        <h3>🚰 Válvulas & Cheques</h3>
+        <p>Granadas, válvulas de paso y accesorios de control de fluidos para todo tipo de instalación.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Herramienta Eléctrica</h3>
+        <p>Ingleteadoras, ruteadoras, taladros y tronzadoras para trabajo pesado y profesional.</p>
+      </div>
+      <div class="card">
+        <h3>🔨 Herramienta Manual</h3>
+        <p>Juegos de llaves, desarmadores, alicates, fijación y tornillería de alta resistencia.</p>
+      </div>
+    </div>
+  </section>
+
+ <!-- MARCAS ALIADAS -->
+  <section class="seccion" id="marcas" style="padding-top: 0;">
+    <h2>Marcas Principales</h2>
+    <div class="marcas-bar">
+      
+      <!-- TRUPER -->
+      <div class="marca-item">
+        TRUPER
+        <div class="marca-popover">
+          <img src="truper.png" alt="Logo Truper">
+        </div>
+      </div>
+
+      <!-- PRETUL -->
+      <div class="marca-item">
+        PRETUL
+        <div class="marca-popover">
+          <img src="pretul.png" alt="Logo Pretul">
+        </div>
+      </div>
+
+      <!-- DEWALT -->
+      <div class="marca-item">
+        DEWALT
+        <div class="marca-popover">
+          <img src="dewalt.png" alt="Logo DeWalt">
+        </div>
+      </div>
+
+      <!-- FOSET -->
+      <div class="marca-item">
+        FOSET
+        <div class="marca-popover">
+          <img src="foset.png" alt="Logo Foset">
+        </div>
+      </div>
+
+      <!-- STANLEY -->
+      <div class="marca-item">
+        STANLEY
+        <div class="marca-popover">
+          <img src="stanley.png" alt="Logo Stanley">
+        </div>
+      </div>
+
+      <!-- NAPOLI -->
+      <div class="marca-item">
+        NAPOLI
+        <div class="marca-popover">
+          <img src="napoli.png" alt="Logo Napoli">
+        </div>
+      </div>
+
+      <!-- RANGER -->
+      <div class="marca-item">
+        RANGER
+        <div class="marca-popover">
+          <img src="ranger.png" alt="Logo Ranger">
+        </div>
+      </div>
+
+      <!-- MP TOOLS -->
+      <div class="marca-item">
+        MP TOOLS
+        <div class="marca-popover">
+          <img src="mptools.png" alt="Logo MP Tools">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- UBICACIÓN Y HORARIOS -->
+  <section class="seccion" id="ubicacion">
+    <h2>Visítanos en San Nicolás</h2>
+    <div class="contacto-grid">
+      <div>
+        <h3>📍 Información de Contacto</h3>
+        <ul class="info-list">
+          <li><strong>Dirección:</strong> Cl. 17 #6 - 80, San Nicolás, Cali, Valle del Cauca</li>
+          <li><strong>Teléfono Fijo:</strong> (602) 883 7522</li>
+          <li><strong>Líneas WhatsApp:</strong> 312 671 8491 / 317 645 3483</li>
+          <li><strong>Horario:</strong> Lunes a Viernes 8:00 AM - 5:30 PM | Sábados 8:00 AM - 1:30 PM</li>
+        </ul>
+        <button class="btn-copiar" id="btnCopiar">📋 Copiar Dirección</button>
+      </div>
+
+      <div>
+        <iframe 
+          class="mapa-frame"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.544600295627!2d-76.5319853!3d3.4516467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a6627054a8e3%3A0x6b185e683713f89d!2sFERRETERIA%20MARO!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Ferretería Maro</strong> &copy; 2026 — Un mundo de herramientas y servicios.</p>
+    <p>Cali, Valle del Cauca | Barrio San Nicolás</p>
+    <p><a href="https://www.instagram.com/ferreteriamarocali" target="_blank">Instagram: @ferreteriamarocali</a></p>
+  </footer>
+
+  <!-- SCRIPT DE INTERACCIÓN -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+
+    const btnCopiar = document.getElementById('btnCopiar');
+    btnCopiar.addEventListener('click', () => {
+      const dir = "Cl. 17 #6 - 80, San Nicolás, Cali, Valle del Cauca";
+      navigator.clipboard.writeText(dir).then(() => {
+        btnCopiar.textContent = "¡Dirección Copiada! ✅";
+        setTimeout(() => {
+          btnCopiar.textContent = "📋 Copiar Dirección";
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
